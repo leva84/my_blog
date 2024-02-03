@@ -1,0 +1,41 @@
+# Основные правила
+AllCops:
+  TargetRubyVersion: 3.2.2
+  SuggestExtensions: false
+  NewCops: disable
+  Exclude:
+    - 'bin/bundle'
+    - 'bin/setup'
+    - 'bin/rake'
+    - 'bin/rails'
+    - 'bin/importmap'
+    - 'spec/spec_helper.rb'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'config/puma.rb'
+    - 'config/application.rb'
+    - 'config/environments/production.rb'
+    - 'config/environments/development.rb'
+
+# Правила форматирования
+Layout/LineLength:
+  Max: 120
+Layout/TrailingWhitespace:
+  Enabled: true
+
+# Правила именования
+Naming/FileName:
+  Exclude:
+    - 'config/routes.rb'
+
+# Правила безопасности
+Security/Eval:
+  Enabled: false
+Security/MarshalLoad:
+  Enabled: false
+
+# Правила стиля кодирования
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
