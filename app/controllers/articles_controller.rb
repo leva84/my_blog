@@ -5,6 +5,18 @@ class ArticlesController < ApplicationController
 
   actions :index, :show, :create, :new, :edit, :update, :destroy
 
+  def create
+    create! do |_, failure|
+      failure.html { render :new, status: :unprocessable_entity }
+    end
+  end
+
+  def update
+    update! do |_, failure|
+      failure.html { render :edit, status: :unprocessable_entity }
+    end
+  end
+
   private
 
   def article_params

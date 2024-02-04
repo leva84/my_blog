@@ -58,7 +58,7 @@ describe ArticlesController, type: :controller do
     shared_examples :invalid_article_parameters do
 
       it 'returns correct http status' do
-        expect(subject).to have_http_status(:ok)
+        expect(subject).to have_http_status(:unprocessable_entity)
       end
 
       it 'does not create a new article' do
@@ -164,7 +164,7 @@ describe ArticlesController, type: :controller do
 
     shared_examples :invalid_article_parameters do
       it 'returns correct http status' do
-        expect(subject).to have_http_status(:ok)
+        expect(subject).to have_http_status(:unprocessable_entity)
       end
 
       it 'does not update a article' do
