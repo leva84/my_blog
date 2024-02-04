@@ -9,19 +9,24 @@ AllCops:
     - 'bin/rake'
     - 'bin/rails'
     - 'bin/importmap'
-    - 'spec/spec_helper.rb'
-    - 'Gemfile'
-    - 'Rakefile'
-    - 'config/puma.rb'
     - 'config/application.rb'
     - 'config/environments/production.rb'
     - 'config/environments/development.rb'
+    - 'config/puma.rb'
+    - 'db/schema.rb'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'spec/spec_helper.rb'
 
 # Правила форматирования
 Layout/LineLength:
   Max: 120
 Layout/TrailingWhitespace:
   Enabled: true
+
+# Правила метрик
+Metrics/BlockLength:
+  Max: 40
 
 # Правила именования
 Naming/FileName:

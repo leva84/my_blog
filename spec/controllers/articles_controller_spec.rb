@@ -1,4 +1,4 @@
-describe ArticlesController, type: :controller do
+describe ArticlesController, type: :controller do # rubocop:disable Metrics/BlockLength
   describe 'GET #index' do
     subject { get :index }
 
@@ -54,9 +54,8 @@ describe ArticlesController, type: :controller do
     end
   end
 
-  describe 'POST #create' do
+  describe 'POST #create' do # rubocop:disable Metrics/BlockLength
     shared_examples :invalid_article_parameters do
-
       it 'returns correct http status' do
         expect(subject).to have_http_status(:unprocessable_entity)
       end
@@ -116,8 +115,8 @@ describe ArticlesController, type: :controller do
         end
       end
 
-      context 'when long parameters 'do
-        let(:invalid_value) { '1' * Article::MAXIMUM_LENGTH_VALUE + '1' }
+      context 'when long parameters' do
+        let(:invalid_value) { '1' * Article::MAXIMUM_LENGTH_VALUE + '1' } # rubocop:disable Style/StringConcatenation
 
         context 'when long title' do
           let(:invalid_params) { { article: { title: invalid_value, summary: 'Summary', content: 'Content' } } }
@@ -159,7 +158,7 @@ describe ArticlesController, type: :controller do
     end
   end
 
-  describe 'PATCH #update' do
+  describe 'PATCH #update' do # rubocop:disable Metrics/BlockLength
     let(:article) { create(:article) }
 
     shared_examples :invalid_article_parameters do
@@ -230,12 +229,11 @@ describe ArticlesController, type: :controller do
         end
       end
 
-      context 'when long parameters 'do
-        let(:invalid_value) { '1' * Article::MAXIMUM_LENGTH_VALUE + '1' }
+      context 'when long parameters' do
+        let(:invalid_value) { '1' * Article::MAXIMUM_LENGTH_VALUE + '1' } # rubocop:disable Style/StringConcatenation
 
         context 'when long title' do
           let(:invalid_params) { { title: invalid_value } }
-
 
           include_examples :invalid_article_parameters
         end
