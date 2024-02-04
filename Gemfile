@@ -29,6 +29,7 @@ end
 
 group :test do
   gem 'factory_bot_rails', '~> 6.2'
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 6.0.0'
   gem 'webmock', '~> 3.19'
 end
