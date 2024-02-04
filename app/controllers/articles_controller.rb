@@ -1,4 +1,10 @@
-class ArticlesController < InheritedResources::Base
+class ArticlesController < ApplicationController
+  inherit_resources
+
+  respond_to :html
+
+  actions :index, :show, :create, :new, :edit, :update, :destroy
+
   private
 
   def article_params

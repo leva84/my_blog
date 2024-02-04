@@ -1,3 +1,5 @@
 class Article < ApplicationRecord
-  validates :title, :summary, :content, length: { maximum: 1000 }, presence: true
+  MAXIMUM_LENGTH_VALUE = 1000
+
+  validates :title, :summary, :content, length: { maximum: MAXIMUM_LENGTH_VALUE }, presence: true
 end
