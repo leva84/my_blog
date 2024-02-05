@@ -4,14 +4,18 @@ ruby '3.2.2'
 
 gem 'activeadmin'
 gem 'bootsnap', require: false
+gem 'bootstrap', '~> 5.3.0'
 gem 'image_processing', "~> 1.2"
 gem 'importmap-rails'
 gem 'jbuilder'
+gem 'jquery-rails'
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 7.1.2'
 gem 'redis', '>= 4.0.1'
+gem 'sassc-rails'
 gem 'sprockets-rails'
+gem 'slim', '~> 5.2.1'
 gem 'stimulus-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'turbo-rails'

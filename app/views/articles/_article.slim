@@ -1,0 +1,10 @@
+div id= "#{ dom_id(article) }"
+.card.mt-4
+  div.card-body
+    i.bi.bi-alarm(style="font-size: 2rem; color: cornflowerblue;")
+    h2.card-title.text-left
+      = article.title
+    br
+    hr
+    p.card-text
+      = article.content

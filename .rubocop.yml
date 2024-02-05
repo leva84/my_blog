@@ -21,8 +21,8 @@ AllCops:
 # Правила форматирования
 Layout/LineLength:
   Max: 120
-Layout/TrailingWhitespace:
-  Enabled: true
+Layout/SpaceInsideStringInterpolation:
+  Enabled: false
 
 # Правила метрик
 Metrics/BlockLength:

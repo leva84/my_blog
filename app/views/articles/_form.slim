@@ -1,0 +1,22 @@
+= form_with(model: article) do |form|
+
+  - if article.errors.any?
+    div.text-danger
+      h2 = pluralize(article.errors.count, 'error') + ' prohibited this article from being saved:'
+      ul
+        - article.errors.each do |error|
+          li = error.full_message
+
+  .mb-3
+    = form.label :title, class: 'form-label'
+    = form.text_field :title, class: 'form-control'
+
+  .mb-3
+    = form.label :summary, class: 'form-label'
+    = form.text_area :summary, class: 'form-control'
+
+  .mb-3
+    = form.label :content, class: 'form-label'
+    = form.text_field :content, class: 'form-control'
+
+  = form.submit 'Save', class: 'btn btn-primary btn-sm'
