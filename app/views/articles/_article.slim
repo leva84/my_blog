@@ -1,11 +1,10 @@
-div id="#{ dom_id(article) }"
-  i.bi-alarm style="font-size: 2rem; color: cornflowerblue;"
-  p
-    strong Title:
-    = article.title
-  p
-    strong Summary:
-    = article.summary
-  p
-    strong Content:
-    = article.content
+div id= "#{ dom_id(article) }"
+.card.mt-4
+  div.card-body
+    i.bi.bi-alarm(style="font-size: 2rem; color: cornflowerblue;")
+    h2.card-title.text-left
+      = article.title
+    br
+    hr
+    p.card-text
+      = article.content

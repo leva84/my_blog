@@ -1,9 +1,18 @@
-h1 Articles
+.p-5.mb-4.bg-body-tertiary.rounded-3
+  .container-fluid.py-5
+    h1.display-5.fw-bold Custom jumbotron
+    p.col-md-8.fs-4 Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.
+    = link_to 'New article', new_article_path, class: 'btn btn-primary btn-sm'
 
 #articles
-  - @articles.each do |article|
-    = render article
-    p
-      = link_to "Show this article", article
-
-= link_to "New article", new_article_path
+  - @articles.each_with_index do |article, index|
+    .row.align-items-stretch
+      .col-12.m-1
+        - if index.even?
+          .h-100.p-5.text-bg-secondary.border.rounded-3
+            = render 'preview_article', article: article
+            = link_to 'Show this article', article, class: 'btn btn-outline-light btn-sm'
+        - else
+          .h-100.p-5.bg-body-secondary.border.rounded-3
+            = render 'preview_article', article: article
+            = link_to 'Show this article', article, class: 'btn btn-outline-secondary btn-sm'
