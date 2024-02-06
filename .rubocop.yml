@@ -13,7 +13,7 @@ AllCops:
     - 'config/environments/production.rb'
     - 'config/environments/development.rb'
     - 'config/puma.rb'
-    - 'db/schema.rb'
+    - 'db/**/**'
     - 'Gemfile'
     - 'Rakefile'
     - 'spec/spec_helper.rb'
@@ -27,6 +27,8 @@ Layout/SpaceInsideStringInterpolation:
 # Правила метрик
 Metrics/BlockLength:
   Max: 40
+Metrics/MethodLength:
+  Max: 20
 
 # Правила именования
 Naming/FileName:
