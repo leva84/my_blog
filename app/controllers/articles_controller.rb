@@ -2,26 +2,22 @@ class ArticlesController < ApplicationController
   respond_to :html
   responders :flash
 
+  before_action :set_article, only: %i[show new create edit update destroy]
+
   def index
     @articles = Article.all
     respond_with(@articles)
   end
 
   def show
-    @article = Article.find(params[:id])
-
     respond_with(@article)
   end
 
   def new
-    @article = Article.new
-
     respond_with(@article)
   end
 
   def create
-    @article = Article.new(article_params)
-
     if @article.save
       respond_with(@article, location: article_path(@article))
     else
@@ -30,14 +26,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
-
     respond_with(@article)
   end
 
   def update
-    @article = Article.find(params[:id])
-
     if @article.update(article_params)
       respond_with(@article, location: article_path(@article))
     else
@@ -46,7 +38,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     respond_with(@article)
   end
@@ -55,5 +46,15 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :summary, :content)
+  end
+
+  def set_article
+    @article = if params[:action] == 'new'
+                 Article.new
+               elsif params[:action] == 'create'
+                 Article.new(article_params)
+               else
+                 Article.find(params[:id])
+               end
   end
 end
