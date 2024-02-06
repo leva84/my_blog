@@ -15,7 +15,8 @@ html
         a.d-flex.align-items-center.text-body-emphasis.text-decoration-none href="#{ root_path }"
           span.fs-4 Developer Blog
 
-      = flash_message
+      .flash id='flash_messages'
+        = render 'shared/flash'
       = yield
 
       footer.pt-3.mt-4.text-body-secondary.border-top

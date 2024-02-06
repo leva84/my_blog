@@ -409,6 +409,7 @@ DEPENDENCIES
   rails (~> 7.1.2)
   rails-controller-testing
   redis (>= 4.0.1)
+  responders
   rspec-rails (~> 6.0.0)
   rubocop (~> 1.56)
   sassc-rails

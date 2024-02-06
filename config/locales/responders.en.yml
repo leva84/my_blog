@@ -1,0 +1,13 @@
+en:
+  flash:
+    articles:
+      actions:
+        create:
+          notice: 'Article was successfully created.'
+          # alert: '%{ resource_name } could not be created.'
+        update:
+          notice: 'Article was successfully updated.'
+          # alert: '%{ resource_name } could not be updated.'
+        destroy:
+          notice: 'Article was successfully destroyed.'
+          alert: 'Article could not be destroyed.'

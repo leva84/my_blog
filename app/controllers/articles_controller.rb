@@ -1,20 +1,54 @@
 class ArticlesController < ApplicationController
-  inherit_resources
-
   respond_to :html
+  responders :flash
 
-  actions :index, :show, :create, :new, :edit, :update, :destroy
+  def index
+    @articles = Article.all
+    respond_with(@articles)
+  end
+
+  def show
+    @article = Article.find(params[:id])
+
+    respond_with(@article)
+  end
+
+  def new
+    @article = Article.new
+
+    respond_with(@article)
+  end
 
   def create
-    create! do |_, failure|
-      failure.html { render :new, status: :unprocessable_entity }
+    @article = Article.new(article_params)
+
+    if @article.save
+      respond_with(@article, location: article_path(@article))
+    else
+      respond_with(@article)
     end
   end
 
+  def edit
+    @article = Article.find(params[:id])
+
+    respond_with(@article)
+  end
+
   def update
-    update! do |_, failure|
-      failure.html { render :edit, status: :unprocessable_entity }
+    @article = Article.find(params[:id])
+
+    if @article.update(article_params)
+      respond_with(@article, location: article_path(@article))
+    else
+      respond_with(@article)
     end
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    respond_with(@article)
   end
 
   private
