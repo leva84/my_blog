@@ -116,21 +116,22 @@ describe ArticlesController, type: :controller do # rubocop:disable Metrics/Bloc
       end
 
       context 'when long parameters' do
-        let(:invalid_value) { '1' * Article::MAXIMUM_LENGTH_VALUE + '1' } # rubocop:disable Style/StringConcatenation
-
         context 'when long title' do
+          let(:invalid_value) { '1' * Article::MAXIMUM_LENGTH_FOR_TITLE + '1' } # rubocop:disable Style/StringConcatenation
           let(:invalid_params) { { article: { title: invalid_value, summary: 'Summary', content: 'Content' } } }
 
           include_examples :invalid_article_parameters
         end
 
         context 'when long summary' do
+          let(:invalid_value) { '1' * Article::MAXIMUM_LENGTH_FOR_SUMMARY + '1' } # rubocop:disable Style/StringConcatenation
           let(:invalid_params) { { article: { title: 'Title', summary: invalid_value, content: 'Content' } } }
 
           include_examples :invalid_article_parameters
         end
 
         context 'when long summary' do
+          let(:invalid_value) { '1' * Article::MAXIMUM_LENGTH_FOR_CONTENT + '1' } # rubocop:disable Style/StringConcatenation
           let(:invalid_params) { { article: { title: 'Title', summary: 'Summary', content: invalid_value } } }
 
           include_examples :invalid_article_parameters
@@ -230,21 +231,22 @@ describe ArticlesController, type: :controller do # rubocop:disable Metrics/Bloc
       end
 
       context 'when long parameters' do
-        let(:invalid_value) { '1' * Article::MAXIMUM_LENGTH_VALUE + '1' } # rubocop:disable Style/StringConcatenation
-
         context 'when long title' do
+          let(:invalid_value) { '1' * Article::MAXIMUM_LENGTH_FOR_TITLE + '1' } # rubocop:disable Style/StringConcatenation
           let(:invalid_params) { { title: invalid_value } }
 
           include_examples :invalid_article_parameters
         end
 
         context 'when long summary' do
+          let(:invalid_value) { '1' * Article::MAXIMUM_LENGTH_FOR_SUMMARY + '1' } # rubocop:disable Style/StringConcatenation
           let(:invalid_params) { { summary: invalid_value } }
 
           include_examples :invalid_article_parameters
         end
 
         context 'when long content' do
+          let(:invalid_value) { '1' * Article::MAXIMUM_LENGTH_FOR_CONTENT + '1' } # rubocop:disable Style/StringConcatenation
           let(:invalid_params) { { content: invalid_value } }
 
           include_examples :invalid_article_parameters

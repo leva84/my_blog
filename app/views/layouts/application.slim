@@ -9,6 +9,13 @@ html
     = stylesheet_link_tag 'application', "data-turbo-track": 'reload'
     = javascript_importmap_tags
 
+     / CDN подключение simplemde (форма для создания статьи в формате md)
+    link rel='stylesheet' href='https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css'
+    script src='https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js'
+
+     / CDN подключение marked (отображение статьи в формате md)
+    script src='https://cdn.jsdelivr.net/npm/marked/marked.min.js'
+
   body
     .container.py-4
       header.pb-3.mb-4.border-bottom
