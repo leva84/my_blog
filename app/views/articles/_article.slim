@@ -1,10 +1,16 @@
 div id= "#{ dom_id(article) }"
 .card.mt-4
   div.card-body
-    i.bi.bi-alarm(style="font-size: 2rem; color: cornflowerblue;")
+    i.bi.bi-alarm(style='font-size: 2rem; color: cornflowerblue;')
     h2.card-title.text-left
       = article.title
     br
     hr
-    p.card-text
-      = article.content
+    p.card-text id='article-content'
+
+javascript:
+  marked.setOptions({
+    sanitize: true
+  });
+
+  document.getElementById('article-content').innerHTML = marked.parse('#{ j article.content }');
