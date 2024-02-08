@@ -1,2 +1,12 @@
-h2 = article.title
-p = article.summary
+div
+  h2 = article.title
+  br
+  hr
+  p id="article#{ article.id }"
+
+javascript:
+  marked.setOptions({
+    sanitize: true
+  });
+
+  document.getElementById('article#{ article.id }').innerHTML = marked.parse('#{ j article.summary }');
