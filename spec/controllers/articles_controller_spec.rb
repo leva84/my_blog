@@ -1,4 +1,4 @@
-describe ArticlesController, type: :controller do # rubocop:disable Metrics/BlockLength
+describe ArticlesController, type: :controller do
   describe 'GET #index' do
     subject { get :index }
 
