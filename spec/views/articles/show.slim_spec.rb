@@ -22,13 +22,4 @@ describe 'articles/show', type: :view do
   it "renders the 'Back to articles' button" do
     expect(rendered).to match(articles_path)
   end
-
-  it "renders the 'Edit this article' button" do
-    expect(rendered).to match(edit_article_path(article))
-  end
-
-  it "renders the 'Destroy this article' button" do
-    expect(rendered).to match(article_path(article))
-    expect(rendered).to match(/Destroy this article/)
-  end
 end

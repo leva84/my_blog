@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '3.2.2'
 
 gem 'activeadmin'
+gem 'activeadmin_simplemde'
 gem 'bootsnap', require: false
 gem 'bootstrap', '~> 5.3.0'
 gem 'cancancan'
