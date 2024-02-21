@@ -1,0 +1,84 @@
+name: tasks
+on:
+  push:
+    branches:
+      - 'MYB**'
+      - main
+  pull_request:
+    branches:
+      - develop
+      - main
+    types: [closed]
+
+env:
+  POSTGRES_USER: ${{ secrets.CI_POSTGRES_USER }}
+  POSTGRES_PASSWORD: ${{ secrets.CI_POSTGRES_PASSWORD }}
+  POSTGRES_DB: ${{ secrets.CI_POSTGRES_DB }}
+
+jobs:
+  task:
+    strategy:
+      matrix:
+        job: [build, lint, test]
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+        ports: [ "5432:5432" ]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install dependencies
+        if: matrix.job == 'build' || matrix.job == 'test'
+        run: |
+          sudo apt-get -yqq install libpq-dev
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+          cp config/storage.example.yml config/storage.yml
+          cp config/database.example.yml config/database.yml
+
+      - name: Install RuboCop
+        if: matrix.job == 'lint'
+        run: gem install rubocop
+
+      - name: Run linters
+        if: matrix.job == 'lint'
+        run: rubocop
+
+      - name: Setup test database
+        if: matrix.job == 'test'
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@localhost:5432/${{ env.POSTGRES_DB }}
+        run: |
+          bin/rails db:create
+          bin/rails db:schema:load
+          bin/rails db:seed
+
+      - name: Run tests
+        if: matrix.job == 'test'
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@localhost:5432/${{ env.POSTGRES_DB }}
+        run: bundle exec rspec
