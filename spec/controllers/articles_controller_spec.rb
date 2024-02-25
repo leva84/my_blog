@@ -2,7 +2,7 @@ describe ArticlesController, type: :controller do
   describe 'GET #index' do
     subject { get :index }
 
-    let(:articles) { create_list :article, 2 }
+    let!(:articles) { create_list :article, 2 }
 
     it 'returns correct http status' do
       expect(subject).to have_http_status(:ok)
