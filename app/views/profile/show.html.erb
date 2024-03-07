@@ -1,0 +1,32 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <strong>Никнейм:</strong>
+    </div>
+    <div class="col-md-8">
+      <%= current_user.nickname %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <strong>Email:</strong>
+    </div>
+    <div class="col-md-8">
+      <%= current_user.email %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <strong>Дата регистрации:</strong>
+    </div>
+    <div class="col-md-8">
+      <%= current_user.created_at.strftime('%d.%m.%Y') %>
+    </div>
+  </div>
+</div>
+
+<br / >
+
+<%= link_to 'Редактировать профиль', edit_user_registration_path, class: "btn btn-danger" %>
+<%= link_to "На главную", root_path, class: "btn btn-warning" %>
