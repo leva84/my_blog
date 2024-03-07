@@ -14,6 +14,7 @@ env:
   POSTGRES_USER: ${{ secrets.CI_POSTGRES_USER }}
   POSTGRES_PASSWORD: ${{ secrets.CI_POSTGRES_PASSWORD }}
   POSTGRES_DB: ${{ secrets.CI_POSTGRES_DB }}
+  ACTIONS_STEP_DEBUG: true
 
 jobs:
   task:
