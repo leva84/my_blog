@@ -19,6 +19,13 @@ html
   body
     .container.py-4
       header.pb-3.mb-4.border-bottom
+        - if user_signed_in?
+          .btn-group.float-end
+            = button_to 'Выйти', destroy_user_session_path, method: :delete, class: 'btn btn-primary float-end'
+        - else
+          .btn-group.float-end
+            = link_to 'Зарегистрироваться', new_user_registration_path, class: 'btn btn-primary me-1 float-end'
+            = link_to 'Войти', new_user_session_path, class: 'btn btn-primary float-end'
         a.d-flex.align-items-center.text-body-emphasis.text-decoration-none href="#{ root_path }"
           span.fs-4 Developer Blog
 
