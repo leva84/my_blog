@@ -29,6 +29,7 @@ gem 'turbo-rails'
 group :development do
   gem 'rubocop', '~> 1.56', require: false
   gem 'web-console'
+  gem "letter_opener"
 end
 
 group :development, :test do
