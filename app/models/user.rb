@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # after_commit :send_temporary_password
 
   validates :nickname, presence: true, length: { minimum: 3, maximum: 8 }, uniqueness: true
-  
+
   protected
 
   def after_confirmation
@@ -17,10 +17,10 @@ class User < ApplicationRecord
   private
 
   def generate_temporary_password
-    if password.blank?
-      self.password = Devise.friendly_token.first(8)
-      self.password_confirmation = password
-    end
+    return unless password.blank?
+
+    self.password = Devise.friendly_token.first(8)
+    self.password_confirmation = password
   end
 
   def send_temporary_password
