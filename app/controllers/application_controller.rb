@@ -5,4 +5,5 @@ class ApplicationController < ActionController::Base
   respond_to :html
 
   include Pundit::Authorization
+  include DevisePermittedParameters
 end
