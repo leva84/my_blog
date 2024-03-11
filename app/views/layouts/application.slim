@@ -21,6 +21,7 @@ html
       header.pb-3.mb-4.border-bottom
         - if user_signed_in?
           .btn-group.float-end
+            = link_to 'Профиль', profile_path, class: 'btn btn-primary me-2 float-end'
             = button_to 'Выйти', destroy_user_session_path, method: :delete, class: 'btn btn-primary float-end'
         - else
           .btn-group.float-end

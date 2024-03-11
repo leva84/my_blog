@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root 'articles#index'
 
   resources :articles, only: %i[index show]
+  resource :profile, controller: 'profile', only: :show
 end
